@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ObraDigital | Páginas Web para Empresas de Reformas y Construcción</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        obra: {
+                            50: '#fffbeb',
+                            100: '#fef3c7',
+                            500: '#f59e0b', /* Color de acento: Naranja construcción */
+                            600: '#d97706',
+                            900: '#1e293b', /* Slate principal */
+                            950: '#0f172a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts: Inter para un look moderno y limpio -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Estilos para el slider interactivo de antes/después */
+        .comparison-slider {
+            position: relative;
+            overflow: hidden;
+        }
+        .image-before {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased">
+
+    <!-- Navegación -->
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <div class="bg-obra-900 text-obra-500 p-2.5 rounded-lg flex items-center justify-center shadow-md">
+                        <!-- Icono de casa hecho con brackets de código </🏠> -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l3 3-3 3m5 0h3M5 20h14a2 2 0 002-2V6a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                        </svg>
+                    </div>
+                    <div>
+                        <span class="text-xl font-bold text-obra-900 tracking-tight">Obra<span class="text-obra-500">Digital</span></span>
+                        <p class="text-[10px] text-slate-500 uppercase tracking-widest font-semibold">Webs de Estructura Sólida</p>
+                    </div>
+                </div>
+
+                <!-- Menú Escritorio -->
+                <nav class="hidden md:flex space-x-8 text-sm font-medium text-slate-600">
+                    <a href="#beneficios" class="hover:text-obra-500 transition-colors">Características</a>
+                    <a href="#demostracion" class="hover:text-obra-500 transition-colors">Módulo Antes/Después</a>
+                    <a href="#planes" class="hover:text-obra-500 transition-colors">Planes y Precios</a>
+                    <a href="#contacto" class="hover:text-obra-500 transition-colors">Contacto</a>
+                </nav>
+
+                <!-- CTA -->
+                <div class="hidden md:flex items-center">
+                    <a href="#contacto" class="bg-obra-500 hover:bg-obra-600 text-white px-5 py-2.5 rounded-lg font-medium text-sm transition-all shadow-sm hover:shadow">
+                        Solicitar Presupuesto Web
+                    </a>
+                </div>
+
+                <!-- Botón Móvil -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-600 hover:text-obra-900 focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Menú Móvil Desplegable -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-200 px-4 py-4 space-y-3">
+            <a href="#beneficios" class="block text-slate-600 hover:text-obra-500 py-1 font-medium">Características</a>
+            <a href="#demostracion" class="block text-slate-600 hover:text-obra-500 py-1 font-medium">Módulo Antes/Después</a>
+            <a href="#planes" class="block text-slate-600 hover:text-obra-500 py-1 font-medium">Planes y Precios</a>
+            <a href="#contacto" class="block text-slate-600 hover:text-obra-500 py-1 font-medium">Contacto</a>
+            <a href="#contacto" class="block w-full text-center bg-obra-500 text-white px-4 py-2.5 rounded-lg font-medium text-sm">Solicitar Presupuesto Web</a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="relative bg-obra-900 text-white overflow-hidden py-20 lg:py-32">
+        <div class="absolute inset-0 opacity-10">
+            <!-- Patrón de cuadrícula para simular planos/estructura -->
+            <svg class="w-full h-full" width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <path d="M 40 0 L 0 0 0 40" fill="none" stroke="white" stroke-width="1"/>
+                    </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill="url(#grid)" />
+            </svg>
+        </div>
+        
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div class="lg:col-span-7 space-y-6">
+                <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-obra-500/20 text-obra-500 border border-obra-500/30">
+                    Especialistas en el Sector de la Construcción y Reformas
+                </span>
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-tight">
+                    Tu trabajo es reformar hogares. El nuestro, <span class="text-obra-500">construir tu web</span>.
+                </h1>
+                <p class="text-lg text-slate-300 max-w-2xl">
+                    Creamos páginas web diseñadas específicamente para conseguir más solicitudes de presupuesto de reformas. Estructura sólida, portafolios interactivos y optimización local.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 pt-2">
+                    <a href="#contacto" class="bg-obra-500 hover:bg-obra-600 text-slate-950 font-semibold px-8 py-4 rounded-xl text-center shadow-lg transition-all hover:-translate-y-0.5">
+                        Quiero mi web de reformas
+                    </a>
+                    <a href="#demostracion" class="bg-slate-800 hover:bg-slate-700 text-white font-medium px-8 py-4 rounded-xl text-center border border-slate-700 transition-all">
+                        Ver funciones exclusivas
+                    </a>
+                </div>
+            </div>
+            
+            <!-- Ilustración / Mockup conceptual -->
+            <div class="lg:col-span-5 relative">
+                <div class="bg-slate-800 rounded-2xl p-4 shadow-2xl border border-slate-700 relative z-10">
+                    <div class="flex items-center space-x-2 pb-3 border-b border-slate-700 mb-3">
+                        <span class="w-3 h-3 rounded-full bg-red-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-yellow-500"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500"></span>
+                        <span class="text-xs text-slate-400 font-mono ml-2">mireforma-profesional.es</span>
+                    </div>
+                    <!-- Simulación de interfaz de web de reformas -->
+                    <div class="bg-slate-900 rounded-lg p-4 space-y-4 text-xs font-mono text-slate-300">
+                        <div class="text-obra-500">// Portafolio de Proyectos</div>
+                        <div class="bg-slate-800 p-2.5 rounded border border-slate-700 flex justify-between items-center">
+                            <span>🔨 Cocina Integral - Madrid Centro</span>
+                            <span class="text-emerald-400">Terminado ✔</span>
+                        </div>
+                        <div class="bg-slate-800 p-2.5 rounded border border-slate-700 flex justify-between items-center">
+                            <span>🛁 Baño Moderno - Microcemento</span>
+                            <span class="text-emerald-400">Terminado ✔</span>
+                        </div>
+                        <div class="bg-slate-800 p-3 rounded border border-slate-700 space-y-2">
+                            <span class="text-amber-400 font-bold block">📊 Calculadora de Presupuestos (Activo)</span>
+                            <p class="text-[11px] text-slate-400">El cliente selecciona m² y materiales; la web genera un pre-diseño y te envía el contacto de inmediato.</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- Elemento decorativo flotante -->
+                <div class="absolute -bottom-6 -left-6 bg-obra-500 text-slate-950 px-4 py-3 rounded-xl font-bold shadow-lg z-20 text-sm flex items-center gap-2">
+                    <span class="text-lg">📈</span> +45% solicitudes de presupuesto
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Beneficios adaptados al sector -->
+    <section id="beneficios" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Especializados únicamente en empresas de reformas</h2>
+            <p class="mt-4 text-slate-600">No hacemos webs genéricas. Desarrollamos herramientas pensadas para transmitir confianza y captar las necesidades de tus futuros clientes.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <!-- Tarjeta 1 -->
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 bg-amber-100 text-obra-600 rounded-xl flex items-center justify-center mb-6">
+                    <!-- Icono Mapa -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Optimización SEO Local</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Estructuramos la web para que aparezcas cuando un vecino de tu ciudad busque "reformas de cocinas en [Tu Ciudad]" o "pintores profesionales".
+                </p>
+            </div>
+
+            <!-- Tarjeta 2 -->
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 bg-amber-100 text-obra-600 rounded-xl flex items-center justify-center mb-6">
+                    <!-- Icono Documento/Calculadora -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Captación de Presupuestos</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    Formularios intuitivos por pasos que cualifican al lead: el cliente indica qué quiere reformar, plazos y presupuesto aproximado antes de llamarte.
+                </p>
+            </div>
+
+            <!-- Tarjeta 3 -->
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
+                <div class="w-12 h-12 bg-amber-100 text-obra-600 rounded-xl flex items-center justify-center mb-6">
+                    <!-- Icono Móvil -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                    </svg>
+                </div>
+                <h3 class="text-xl font-bold text-slate-900 mb-3">Diseño 100% Adaptable</h3>
+                <p class="text-slate-600 text-sm leading-relaxed">
+                    La mayoría de tus clientes te buscarán desde el móvil en sus momentos de descanso. Tu web cargará de forma rápida y óptima en cualquier pantalla.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Demostración interactiva: Módulo Antes / Después -->
+    <section id="demostracion" class="bg-slate-900 text-white py-20 lg:py-28">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-5 space-y-6">
+                <span class="text-obra-500 font-bold tracking-wider text-xs uppercase">Interactividad que vende</span>
+                <h2 class="text-3xl sm:text-4xl font-bold tracking-tight">Módulo interactivo "Antes y Después"</h2>
+                <p class="text-slate-300 text-sm sm:text-base leading-relaxed">
+                    Las palabras no bastan en el sector de las reformas; los resultados deben verse. Incluimos en tu web este deslizador interactivo para que tus clientes potenciales arrastren y aprecien la calidad real de tus acabados.
+                </p>
+                <div class="border-l-4 border-obra-500 pl-4 py-1 text-xs sm:text-sm text-slate-400 italic">
+                    "Este tipo de funcionalidades retiene al usuario un 60% más de tiempo en la web, multiplicando el interés."
+                </div>
+            </div>
+
+            <!-- El Slider Interactivo real -->
+            <div class="lg:col-span-7 flex flex-col items-center">
+                <div class="comparison-slider w-full max-w-xl h-80 sm:h-96 rounded-2xl shadow-2xl relative select-none border border-slate-700">
+                    
+                    <!-- Imagen "Después" (Fondo) - Usamos Unsplash con imágenes reales de cocina de reformas -->
+                    <img class="absolute inset-0 w-full h-full object-cover" 
+                         src="https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80" 
+                         alt="Después de la reforma">
+                    <span class="absolute bottom-4 right-4 bg-emerald-500 text-white font-bold text-xs px-2.5 py-1 rounded shadow-md z-10 uppercase tracking-wider">Después</span>
+
+                    <!-- Imagen "Antes" (Se recortará con clip-path) -->
+                    <div id="before-container" class="image-before overflow-hidden" style="clip-path: inset(0px 50% 0px 0px);">
+                        <img class="absolute inset-0 w-full h-full object-cover" 
+                             src="https://images.unsplash.com/photo-1505691938895-1758d7feb511?auto=format&fit=crop&w=800&q=80" 
+                             alt="Antes de la reforma" style="width: 100vw; max-width: 576px;"> <!-- Match exact width limits -->
+                        <span class="absolute bottom-4 left-4 bg-red-600 text-white font-bold text-xs px-2.5 py-1 rounded shadow-md z-10 uppercase tracking-wider">Antes</span>
+                    </div>
+
+                    <!-- El control del rango (invisible pero cubre todo para interactuar) -->
+                    <input type="range" min="0" max="100" value="50" id="slider" 
+                           class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30">
+
+                    <!-- Línea divisoria y tirador visual -->
+                    <div id="slider-line" class="absolute top-0 bottom-0 w-1 bg-white z-20 pointer-events-none" style="left: 50%;">
+                        <div class="absolute top-1/2 -translate-y-1/2 -translate-x-1/2 w-8 h-8 bg-white text-slate-900 rounded-full shadow-lg flex items-center justify-center pointer-events-none">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="3">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M8 9l4-4 4 4m0 6l-4 4-4-4" />
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <p class="text-xs text-slate-400 mt-4">Desliza el dedo o el ratón para ver la transformación</p>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Planes y Precios -->
+    <section id="planes" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center max-w-3xl mx-auto mb-16">
+            <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Soluciones adaptadas a tu volumen de obra</h2>
+            <p class="mt-4 text-slate-600">Desde autónomos de reformas hasta grandes constructoras. Sin sorpresas ni costes ocultos.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+            
+            <!-- Plan Base -->
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm">
+                <div>
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Ideal Autónomos</span>
+                    <h3 class="text-2xl font-bold text-slate-900 mt-2">Web Presencial</h3>
+                    <p class="text-sm text-slate-500 mt-2">La tarjeta de visita digital que necesitas para transmitir seriedad.</p>
+                    <div class="mt-6 flex items-baseline">
+                        <span class="text-4xl font-extrabold tracking-tight text-slate-900">450€</span>
+                        <span class="ml-1 text-sm text-slate-500">pago único</span>
+                    </div>
+                    <ul class="mt-6 space-y-4 text-sm text-slate-600">
+                        <li class="flex items-center gap-3">
+                            <span class="text-emerald-500 font-bold">✓</span> Página de Inicio, Servicios y Contacto
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-emerald-500 font-bold">✓</span> Portafolio de fotos clásico
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-emerald-500 font-bold">✓</span> Enlace directo a WhatsApp de clientes
+                        </li>
+                        <li class="flex items-center gap-3 text-slate-400 line-through">
+                            <span>✗ Slider interactivo Antes/Después</span>
+                        </li>
+                    </ul>
+                </div>
+                <a href="#contacto" class="mt-8 block w-full py-3 px-4 bg-slate-100 hover:bg-slate-200 text-slate-800 text-center font-semibold rounded-lg text-sm transition-colors">Solicitar información</a>
+            </div>
+
+            <!-- Plan Recomendado -->
+            <div class="bg-white p-8 rounded-2xl border-2 border-obra-500 flex flex-col justify-between shadow-md relative transform lg:-translate-y-2">
+                <span class="absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 bg-obra-500 text-slate-950 text-[11px] font-extrabold tracking-wider uppercase px-3 py-1 rounded-full shadow-sm">
+                    El más solicitado
+                </span>
+                <div>
+                    <span class="text-xs font-bold text-obra-600 uppercase tracking-wider">Para Empresas de Reformas</span>
+                    <h3 class="text-2xl font-bold text-slate-900 mt-2">Web Profesional</h3>
+                    <p class="text-sm text-slate-500 mt-2">Optimizado para captación activa de llamadas y presupuestos.</p>
+                    <div class="mt-6 flex items-baseline">
+                        <span class="text-4xl font-extrabold tracking-tight text-slate-900">850€</span>
+                        <span class="ml-1 text-sm text-slate-500">pago único</span>
+                    </div>
+                    <ul class="mt-6 space-y-4 text-sm text-slate-600">
+                        <li class="flex items-center gap-3">
+                            <span class="text-emerald-500 font-bold">✓</span> Todo lo del plan Base
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-emerald-500 font-bold">✓</span> <strong>Módulo Antes/Después interactivo</strong>
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-emerald-500 font-bold">✓</span> Formulario inteligente de presupuestos
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-emerald-500 font-bold">✓</span> Optimización SEO para tu localidad
+                        </li>
+                    </ul>
+                </div>
+                <a href="#contacto" class="mt-8 block w-full py-3 px-4 bg-obra-500 hover:bg-obra-600 text-white text-center font-semibold rounded-lg text-sm transition-colors shadow-sm">Solicitar Profesional</a>
+            </div>
+
+            <!-- Plan Premium -->
+            <div class="bg-white p-8 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm">
+                <div>
+                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Grandes Proyectos</span>
+                    <h3 class="text-2xl font-bold text-slate-900 mt-2">Web Constructora</h3>
+                    <p class="text-sm text-slate-500 mt-2">Diseño y desarrollo a medida para corporativas de gran escala.</p>
+                    <div class="mt-6 flex items-baseline">
+                        <span class="text-4xl font-extrabold tracking-tight text-slate-900">Desde 1.400€</span>
+                    </div>
+                    <ul class="mt-6 space-y-4 text-sm text-slate-600">
+                        <li class="flex items-center gap-3">
+                            <span class="text-emerald-500 font-bold">✓</span> Estructura multi-página avanzada
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-emerald-500 font-bold">✓</span> Calculador automático de presupuestos
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-emerald-500 font-bold">✓</span> Integración con tu sistema CRM/ERP
+                        </li>
+                        <li class="flex items-center gap-3">
+                            <span class="text-emerald-500 font-bold">✓</span> Soporte prioritario y mantenimiento anual
+                        </li>
+                    </ul>
+                </div>
+                <a href="#contacto" class="mt-8 block w-full py-3 px-4 bg-slate-100 hover:bg-slate-200 text-slate-800 text-center font-semibold rounded-lg text-sm transition-colors">Hablar con un consultor</a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Sección de Contacto con Formulario -->
+    <section id="contacto" class="bg-slate-100 py-20 lg:py-28 border-t border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-12 gap-12">
+            
+            <div class="lg:col-span-5 space-y-6">
+                <span class="text-obra-600 font-bold tracking-wider text-xs uppercase">¿Hablamos?</span>
+                <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Construyamos tu presencia digital</h2>
+                <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                    Cuéntanos brevemente qué tipo de servicios ofreces (reformas de interiores, fontanería, pintura, reformas integrales) y analizaremos de forma gratuita el mercado en tu localidad para proponerte la mejor estructura web.
+                </p>
+                
+                <div class="space-y-4 pt-4">
+                    <div class="flex items-center gap-3 text-slate-700 text-sm">
+                        <span class="bg-white p-2 rounded-lg border border-slate-200 text-obra-500 font-bold">✉</span>
+                        <span>contacto@obradigital.es</span>
+                    </div>
+                    <div class="flex items-center gap-3 text-slate-700 text-sm">
+                        <span class="bg-white p-2 rounded-lg border border-slate-200 text-obra-500 font-bold">📞</span>
+                        <span>+34 900 000 000</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulario de contacto -->
+            <div class="lg:col-span-7 bg-white p-8 sm:p-10 rounded-2xl border border-slate-200 shadow-sm">
+                <form id="contact-form" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label for="name" class="block text-xs font-bold uppercase text-slate-500 tracking-wider mb-2">Tu Nombre / Empresa</label>
+                            <input type="text" id="name" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-obra-500/50 focus:border-obra-500">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-xs font-bold uppercase text-slate-500 tracking-wider mb-2">Teléfono de contacto</label>
+                            <input type="tel" id="phone" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-obra-500/50 focus:border-obra-500">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="email" class="block text-xs font-bold uppercase text-slate-500 tracking-wider mb-2">Correo electrónico</label>
+                        <input type="email" id="email" required class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-obra-500/50 focus:border-obra-500">
+                    </div>
+                    <div>
+                        <label for="sector" class="block text-xs font-bold uppercase text-slate-500 tracking-wider mb-2">¿Cuál es tu especialidad?</label>
+                        <select id="sector" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-obra-500/50 focus:border-obra-500 text-slate-600">
+                            <option value="integrales">Reformas Integrales</option>
+                            <option value="cocinas-banos">Cocinas y Baños</option>
+                            <option value="pintura">Pintura e Interiorismo</option>
+                            <option value="instalaciones">Instalaciones (Fontanería, Electricidad)</option>
+                            <option value="otros">Otros del sector</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="message" class="block text-xs font-bold uppercase text-slate-500 tracking-wider mb-2">Cuéntanos un poco sobre tu negocio</label>
+                        <textarea id="message" rows="4" class="w-full px-4 py-3 bg-slate-50 border border-slate-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-obra-500/50 focus:border-obra-500"></textarea>
+                    </div>
+                    
+                    <!-- Simulación de botón con estado controlado por JS -->
+                    <button type="submit" class="w-full py-4 bg-obra-500 hover:bg-obra-600 text-white font-bold rounded-lg text-sm transition-colors shadow-md">
+                        Enviar solicitud de propuesta
+                    </button>
+                    <p id="form-feedback" class="text-xs text-center text-emerald-600 mt-2 hidden">¡Recibido! Nos pondremos en contacto contigo en menos de 24 horas laborables.</p>
+                </form>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-obra-950 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-6">
+            <div class="flex items-center space-x-3">
+                <span class="text-lg font-bold text-white tracking-tight">Obra<span class="text-obra-500">Digital</span></span>
+                <span class="text-xs text-slate-600">|</span>
+                <p class="text-xs">Estudio de desarrollo especializado en el sector construcción.</p>
+            </div>
+            <p class="text-xs">&copy; 2026 ObraDigital. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <!-- Lógica Web (JS) -->
+    <script>
+        // 1. Menú móvil interactivo
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Ocultar menú móvil tras pulsar un enlace
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // 2. Control interactivo del slider de Antes/Después
+        const sliderInput = document.getElementById('slider');
+        const beforeContainer = document.getElementById('before-container');
+        const sliderLine = document.getElementById('slider-line');
+
+        sliderInput.addEventListener('input', (e) => {
+            const value = e.target.value;
+            // Ajustar el clip-path del contenedor "antes" para revelar la imagen inferior
+            beforeContainer.style.clipPath = `inset(0px ${100 - value}% 0px 0px)`;
+            // Mover la línea divisoria vertical
+            sliderLine.style.left = `${value}%`;
+        });
+
+        // 3. Simulación de envío de formulario de contacto
+        const contactForm = document.getElementById('contact-form');
+        const formFeedback = document.getElementById('form-feedback');
+
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            formFeedback.classList.remove('hidden');
+            contactForm.reset();
+            setTimeout(() => {
+                formFeedback.classList.add('hidden');
+            }, 5000); // Ocultar mensaje de éxito tras 5 segundos
+        });
+    </script>
+</body>
+</html>

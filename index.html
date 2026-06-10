@@ -274,7 +274,7 @@
                         <span class="absolute bottom-4 left-4 bg-red-600 text-white font-bold text-xs px-2.5 py-1 rounded shadow-md z-10 uppercase tracking-wider">Antes</span>
                     </div>
 
-                    <!-- El control del rango (invisible pero cubre todo para interactuar) -->
+                    <!-- El control del rango -->
                     <input type="range" min="0" max="100" value="50" id="slider" 
                            class="absolute inset-0 w-full h-full opacity-0 cursor-ew-resize z-30">
 
@@ -293,14 +293,14 @@
         </div>
     </section>
 
-    <!-- Planes y Precios -->
+    <!-- Planes y Precios (Actualizado a 2 Columnas) -->
     <section id="planes" class="py-20 lg:py-28 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="text-center max-w-3xl mx-auto mb-16">
             <h2 class="text-3xl sm:text-4xl font-bold text-slate-900">Soluciones adaptadas a tu volumen de obra</h2>
-            <p class="mt-4 text-slate-600">Desde autónomos de reformas hasta grandes constructoras. Sin sorpresas ni costes ocultos.</p>
+            <p class="mt-4 text-slate-600">Desde autónomos de reformas hasta empresas consolidadas. Sin sorpresas ni costes ocultos.</p>
         </div>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-stretch">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch max-w-4xl mx-auto">
             
             <!-- Plan Base (Web Presencial) -->
             <div class="bg-white p-8 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm">
@@ -357,30 +357,6 @@
                     </ul>
                 </div>
                 <a href="#contacto" class="mt-8 block w-full py-3 px-4 bg-obra-500 hover:bg-obra-600 text-white text-center font-semibold rounded-lg text-sm transition-colors shadow-sm">Solicitar Profesional</a>
-            </div>
-
-            <!-- Plan Premium -->
-            <div class="bg-white p-8 rounded-2xl border border-slate-200 flex flex-col justify-between shadow-sm">
-                <div>
-                    <span class="text-xs font-bold text-slate-500 uppercase tracking-wider">Grandes Proyectos</span>
-                    <h3 class="text-2xl font-bold text-slate-900 mt-2">Web Constructora</h3>
-                    <p class="text-sm text-slate-500 mt-2">Diseño y desarrollo a medida para corporativas de gran escala.</p>
-                    <div class="mt-6 flex items-baseline">
-                        <span class="text-4xl font-extrabold tracking-tight text-slate-900">Desde 1.400€</span>
-                    </div>
-                    <ul class="mt-6 space-y-4 text-sm text-slate-600">
-                        <li class="flex items-center gap-3">
-                            <span class="text-emerald-500 font-bold">✓</span> Estructura de navegación multi-página
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="text-emerald-500 font-bold">✓</span> Calculador automático de presupuestos
-                        </li>
-                        <li class="flex items-center gap-3">
-                            <span class="text-emerald-500 font-bold">✓</span> Soporte prioritario y mantenimiento anual
-                        </li>
-                    </ul>
-                </div>
-                <a href="#contacto" class="mt-8 block w-full py-3 px-4 bg-slate-100 hover:bg-slate-200 text-slate-800 text-center font-semibold rounded-lg text-sm transition-colors">Hablar con un consultor</a>
             </div>
 
         </div>
@@ -515,23 +491,24 @@
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- Footer Centrado y Simplificado -->
     <footer class="bg-obra-950 text-slate-400 py-12 border-t border-slate-800">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-6">
-            <div class="flex items-center space-x-3">
-                <span class="text-lg font-bold text-white tracking-tight">Obra<span class="text-obra-500">Digital</span></span>
-                <span class="text-xs text-slate-600">|</span>
-                <p class="text-xs">Estudio de desarrollo web especializado en el sector de la construcción.</p>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center justify-center gap-6 text-center">
+            
+            <!-- Logo Centrado -->
+            <div>
+                <span class="text-xl font-bold text-white tracking-tight">Obra<span class="text-obra-500">Digital</span></span>
             </div>
             
-            <!-- Enlaces Legales -->
-            <div class="flex flex-wrap justify-center gap-4 text-xs font-medium text-slate-400">
+            <!-- Enlaces Legales Centrados -->
+            <div class="flex flex-wrap justify-center gap-6 text-xs font-medium text-slate-400">
                 <button onclick="openLegal('terminos')" class="hover:text-white transition-colors">Términos de servicio</button>
                 <button onclick="openLegal('privacidad')" class="hover:text-white transition-colors">Política de Privacidad</button>
                 <button onclick="openLegal('cookies')" class="hover:text-white transition-colors">Política de Cookies</button>
             </div>
 
-            <p class="text-xs">&copy; 2026 ObraDigital. Todos los derechos reservados.</p>
+            <!-- Año y Atribución Simple -->
+            <p class="text-xs text-slate-600">&copy; 2026 ObraDigital</p>
         </div>
     </footer>
 

@@ -1,0 +1,166 @@
+:root {
+    --bg-cream: #FAF9F6;
+    --blush-pink: #E5D4D0;
+    --warm-beige: #D8CABB;
+    --luxury-gold: #BBA577;
+    --text-charcoal: #2A2726;
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Inter', sans-serif;
+}
+
+body {
+    background-color: var(--bg-cream);
+    color: var(--text-charcoal);
+    font-family: var(--font-sans);
+    margin: 0;
+    padding: 0;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* --- HOME PAGE --- */
+.home-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+.home-header {
+    text-align: center;
+    margin-bottom: 50px;
+    margin-top: 20px;
+}
+
+.home-header h1 {
+    font-family: var(--font-serif);
+    font-weight: 300;
+    font-size: 3.5rem;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.home-header p {
+    color: var(--warm-beige);
+    letter-spacing: 3px;
+    font-size: 0.8rem;
+    margin-top: 10px;
+}
+
+/* Grid Principal */
+.grid-capitulos {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 50px;
+}
+
+@media (min-width: 768px) {
+    .grid-capitulos {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Diseño de cada tarjeta */
+.carta {
+    aspect-ratio: 3/4;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    border-radius: 4px;
+    transition: all 0.6s ease;
+    border: 1px solid transparent;
+}
+
+.carta span {
+    font-family: var(--font-serif);
+    font-size: 1.5rem;
+    font-weight: 300;
+}
+
+/* Estado: Desbloqueado */
+.carta.desbloqueado {
+    background-color: var(--blush-pink);
+    color: var(--text-charcoal);
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+}
+
+.carta.desbloqueado:hover {
+    transform: translateY(-5px);
+}
+
+/* Estado: Bloqueado */
+.carta.bloqueado {
+    background-color: rgba(216, 202, 187, 0.2); /* warm-beige transparente */
+    border-color: rgba(216, 202, 187, 0.4);
+    color: var(--warm-beige);
+    cursor: not-allowed;
+    opacity: 0.7;
+}
+
+/* Capítulo Final */
+.capitulo-final {
+    width: 100%;
+    max-width: 300px;
+    padding: 20px 0;
+    text-align: center;
+    border: 1px solid rgba(187, 165, 119, 0.5); /* Dorado oscuro */
+    background-color: rgba(187, 165, 119, 0.05);
+    color: var(--luxury-gold);
+    font-family: var(--font-serif);
+    letter-spacing: 2px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.4s;
+}
+
+.capitulo-final.activo {
+    background-color: var(--text-charcoal);
+    border-color: var(--luxury-gold);
+    color: var(--bg-cream);
+}
+
+/* --- INTERFAZ CAPÍTULOS --- */
+.capitulo-vista {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 60px 20px;
+    text-align: center;
+}
+
+.capitulo-vista h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.capitulo-vista p {
+    line-height: 1.8;
+    color: #4A4A4A;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.btn-volver {
+    display: inline-block;
+    margin-top: 40px;
+    padding: 10px 20px;
+    border: 1px solid var(--text-charcoal);
+    color: var(--text-charcoal);
+    text-decoration: none;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    transition: 0.3s;
+}
+
+.btn-volver:hover {
+    background: var(--text-charcoal);
+    color: var(--bg-cream);
+}

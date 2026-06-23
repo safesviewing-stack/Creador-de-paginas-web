@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desbloqueando...</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
+    <style>
+        body { background: #2A2726; color: #BBA577; height: 100vh; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; text-align: center; }
+        .fade { animation: aparecer 3s ease-in-out; }
+        @keyframes aparecer { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
+    </style>
+</head>
+<body>
+    <h1 class="fade">Abriendo nuevo recuerdo...</h1>
+
+    <script src="app.js"></script>
+    <script>
+        // Leer la URL (?cap=X)
+        const urlParams = new URLSearchParams(window.location.search);
+        const capitulo = urlParams.get('cap');
+
+        if (capitulo) {
+            // Guarda el ID escaneado en el disco del móvil
+            desbloquearCapitulo(capitulo);
+            // Simula un "efecto mágico de carga" de 2.5 seg y envía al inicio
+            setTimeout(() => {
+                window.location.href = `index.html`; 
+            }, 2500);
+        } else {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

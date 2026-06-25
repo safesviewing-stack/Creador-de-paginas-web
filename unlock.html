@@ -6,34 +6,51 @@
     <title>Desbloqueando...</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
     <style>
+        /* Pantalla oscura, con animación elegante de transición */
         body { background: #2A2726; color: #BBA577; height: 100vh; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; text-align: center; }
-        .fade { animation: aparecer 3s ease-in-out; }
+        .fade { animation: aparecer 3s ease-in-out; font-size: 2rem; }
         @keyframes aparecer { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
     </style>
 </head>
 <body>
     <h1 class="fade">Abriendo nuevo recuerdo...</h1>
 
-    <!-- ETIQUETA V2 ANTI-CONGELAMIENTO -->
-    <script src="app.js?v=2"></script> 
-    
     <script>
+        // EL CEREBRO DIRECTO Y A PRUEBA DE FALLOS EN EL PROPIO HTML
         const urlParams = new URLSearchParams(window.location.search);
         const capitulo = urlParams.get('cap');
         const esCreador = urlParams.get('creador') === '1';
 
         if (capitulo) {
-            let pasoAprobado = intentarDesbloquear(capitulo, esCreador);
-            
-            if (pasoAprobado) {
-                setTimeout(() => {
-                    window.location.href = "capitulo.html?id=" + capitulo; 
-                }, 2500);
+            let idNum = parseInt(capitulo);
+            let guardado = localStorage.getItem('el_viaje_progreso');
+            let progreso = guardado ? JSON.parse(guardado) : [1];
+
+            // 1. Validar el candado si es que aún no lo tiene guardado
+            if (!progreso.includes(idNum)) {
+                // Si salta capítulos, bloqueamos
+                if (idNum > 1 && !progreso.includes(idNum - 1) && !esCreador) {
+                    alert("¡Alto ahí! 🧐\n\nEl orden de nuestra historia importa. Necesitas encontrar el Código Anterior antes de poder ver este mensaje.");
+                    window.location.href = "index.html"; // Al mapa de vuelta
+                } else {
+                    // Está en orden: lo guardamos para siempre
+                    progreso.push(idNum);
+                    localStorage.setItem('el_viaje_progreso', JSON.stringify(progreso));
+                    entrarAlRecuerdo(idNum);
+                }
             } else {
-                window.location.href = "index.html";
+                // Ya lo tenía de antes, le dejamos entrar sin cambiar nada
+                entrarAlRecuerdo(idNum);
             }
         } else {
             window.location.href = "index.html";
+        }
+
+        // TELETRANSPORTE MAGICO TRAS 2 SEGUNDOS
+        function entrarAlRecuerdo(numeroDestino) {
+            setTimeout(() => {
+                window.location.href = "capitulo.html?id=" + numeroDestino; 
+            }, 2500);
         }
     </script>
 </body>

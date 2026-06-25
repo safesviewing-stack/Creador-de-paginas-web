@@ -16,19 +16,21 @@
 
     <script src="app.js"></script>
     <script>
-        // Leer la URL (?cap=X)
+        // Leer qué llave ha escaneado (?cap=X)
         const urlParams = new URLSearchParams(window.location.search);
         const capitulo = urlParams.get('cap');
 
         if (capitulo) {
-            // Guarda el ID escaneado en el disco del móvil
+            // Guarda la memoria en su teléfono y rompe el candado
             desbloquearCapitulo(capitulo);
-            // Simula el "efecto mágico", pero ahora te envía directo a la carta a leerla
-setTimeout(() => {
-    window.location.href = `capitulo.html?id=${capitulo}`; 
-}, 2500);
+            
+            // Simula la magia negra de cargar el recuerdo... y TELETRANSPORTA AL CAPÍTULO DIRECTO
+            setTimeout(() => {
+                window.location.href = "capitulo.html?id=" + capitulo; 
+            }, 2500);
         } else {
-            window.location.href = 'index.html';
+            // Si entra por error, lo expulsa al inicio
+            window.location.href = "index.html";
         }
     </script>
 </body>

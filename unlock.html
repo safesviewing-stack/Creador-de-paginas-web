@@ -16,20 +16,25 @@
 
     <script src="app.js"></script>
     <script>
-        // Leer qué llave ha escaneado (?cap=X)
         const urlParams = new URLSearchParams(window.location.search);
         const capitulo = urlParams.get('cap');
+        
+        // AQUÍ ESTÁ EL TRUCO PARA TI: detecta si pones en el link "&creador=1"
+        const esCreador = urlParams.get('creador') === '1';
 
         if (capitulo) {
-            // Guarda la memoria en su teléfono y rompe el candado
-            desbloquearCapitulo(capitulo);
+            let pasoAprobado = intentarDesbloquear(capitulo, esCreador);
             
-            // Simula la magia negra de cargar el recuerdo... y TELETRANSPORTA AL CAPÍTULO DIRECTO
-            setTimeout(() => {
-                window.location.href = "capitulo.html?id=" + capitulo; 
-            }, 2500);
+            if (pasoAprobado) {
+                // Va todo bien: a los 2.5 seg se mete a la carta de amor
+                setTimeout(() => {
+                    window.location.href = "capitulo.html?id=" + capitulo; 
+                }, 2500);
+            } else {
+                // Si hizo trampas saltándose el orden: la expulsamos al mapa al instante tras salirle el aviso romántico
+                window.location.href = "index.html";
+            }
         } else {
-            // Si entra por error, lo expulsa al inicio
             window.location.href = "index.html";
         }
     </script>

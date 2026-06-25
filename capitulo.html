@@ -3,47 +3,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Capítulo - El Viaje</title>
+    <title>Recuerdo - El Viaje</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="capitulo-vista" id="contenido-visor">
-        <h1 id="titulo-cap"></h1>
-        <!-- El contenido será cargado dinámicamente -->
-        <div id="texto-cap"></div>
+        <h1 id="titulo-cap">Cargando recuerdo...</h1>
         
-        <!-- Para la revelación del Regalo -->
+        <div id="texto-cap">
+            <!-- La magia pintará aquí las letras y las fotos desde app.js -->
+        </div>
+        
+        <!-- Zona solo para su regalo del final -->
         <div id="caja-regalo" style="display:none; margin-top: 50px;">
-            <a href="ruta/a/tu/billete.pdf" class="capitulo-final activo" style="padding: 15px 40px; display:inline-block; text-decoration: none;">DESCARGAR BILLETES</a>
+            <a href="#" class="capitulo-final activo" style="padding: 15px 40px; display:inline-block; text-decoration: none;">DESCARGAR REGALO FINAL</a>
         </div>
 
-        <a href="index.html" class="btn-volver">← Volver al mapa</a>
+        <a href="index.html" class="btn-volver">← Volver al mapa general</a>
     </div>
 
-    <script src="app.js?v=2"></script>
+    <!-- AQUÍ SE ENCHUFA AL CEREBRO GENERAL PARA VER EL CONTENIDO -->
+    <script src="app.js"></script>
     <script>
-        // 1. Obtener de qué ID de historia estamos hablando
         const params = new URLSearchParams(window.location.search);
         const idCapitulo = params.get('id');
 
-        // 2. Verificar que el usuario no hace trampas escribiendo en la url
-        const progresos = obtenerProgreso();
+        let guardadoLocal = localStorage.getItem('el_viaje_progreso');
+        let progresosApp = guardadoLocal ? JSON.parse(guardadoLocal) : [1];
         
-        if (!progresos.includes(parseInt(idCapitulo))) {
-            document.getElementById('contenido-visor').innerHTML = `<h1>Misterio sin resolver</h1><p>Esta pieza aún no ha sido descubierta. Vuelve al menú.</p><a href="index.html" class="btn-volver">← Volver al mapa</a>`;
-        } else {
-            // Pinta la información de nuestro objeto secreto
-            const data = capitulosData[idCapitulo];
-            if (data) {
-                document.getElementById('titulo-cap').innerText = data.titulo;
-                // Si quieres poner párrafos usamos data.contenido
-                document.getElementById('texto-cap').innerHTML = `<p>${data.contenido}</p>`;
+        const visorCaja = document.getElementById('contenido-visor');
 
-                // Condición única si es el Capítulo de Cumpleaños: mostrar billete PDF
-                if (idCapitulo == "10") {
+        // SI NO ESTA DESBLOQUEADO O QUIEREN ENTRAR DIRECTO PONIENDO EL LINK... 
+        if (!progresosApp.includes(parseInt(idCapitulo))) {
+            visorCaja.innerHTML = `<h1>Recuerdo sin descubrir</h1><p style="margin-bottom: 50px">Todavía no has alcanzado esta parte de la historia. ¡Debes ir escaneando cada pequeño tesoro en su momento exacto!</p><a href="index.html" class="btn-volver">← Volver al mapa general</a>`;
+        } else {
+            // MAGIA: Trae el título y la foto exactas si coincide el número
+            if (capitulosData[idCapitulo]) {
+                document.getElementById('titulo-cap').innerText = capitulosData[idCapitulo].titulo;
+                document.getElementById('texto-cap').innerHTML = `<p>${capitulosData[idCapitulo].contenido}</p>`;
+
+                // Modo Nocturno Festivo SÓLO para el Capítulo del cumpleaños:
+                if (idCapitulo === "10") {
                     document.getElementById('caja-regalo').style.display = 'block';
-                    document.body.style.backgroundColor = '#2A2726'; // Fondo oscuro mágico para el 10
+                    document.body.style.backgroundColor = '#2A2726'; 
                     document.body.style.color = '#BBA577';
                     document.getElementById('titulo-cap').style.color = '#BBA577';
                     document.getElementById('texto-cap').style.color = '#FAF9F6';

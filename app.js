@@ -2,11 +2,10 @@ const FECHA_CUMPLEAÑOS_2027 = new Date('2027-04-23T00:00:00');
 
 // ATENCIÓN AL ESCRIBIR TUS TEXTOS AQUÍ:
 // 1. Evita poner comillas dobles (") dentro del texto. Si necesitas entrecomillar, usa las simples ('). 
-// Ejemplo BIEN: contenido: "Me dijiste 'hola' y sonreí"
 const capitulosData = {
     1: { 
-        titulo: "Capítulo I: El Comienzo", 
-        contenido: "Hoy empieza tu aventura... Disfruta el viaje." 
+        titulo: "Capítulo I · El comienzo", 
+        contenido: "Siempre he pensado que las cosas que más importan rara vez aparecen de golpe.<br><br>Se construyen despacio.<br><br>Con conversaciones que empiezan sin darte cuenta, con recuerdos que nacen de los días más normales y con pequeños detalles que, vistos con el tiempo, terminan significándolo todo.<br><br>Hace algún tiempo decidí empezar a crear algo para ti.<br><br>No sabía exactamente cómo terminaría, solo sabía que quería que fuera diferente. Que no se tratara únicamente de un regalo, sino de una forma de detener el tiempo de vez en cuando y recordar todo aquello que merece la pena conservar.<br><br>Hoy solo estás viendo el principio.<br><br>Y, como en todas las buenas historias, el principio no explica todo.<br><br>Hay cosas que solo cobran sentido cuando llega el momento adecuado.<br><br>Así que, por ahora, simplemente disfruta de este instante.<br><br>Solo quiero pedirte una pequeña cosa.<br><br>Guarda bien aquello que has recibido hoy.<br><br>Puede que ahora no entiendas por qué, pero llegará un momento en el que lo necesitarás.<br><br>Hasta entonces... deja que el tiempo haga su parte.<br><br>Con cariño,<br><br>Luis" 
     },
     2: { 
         titulo: "Capítulo II: La primera vez que huimos", 

@@ -1,13 +1,8 @@
-// ==========================================
-// CONFIGURACIÓN PRINCIPAL DE FECHAS
-// ==========================================
-// La Fecha de su cumpleaños donde se le permitirá entrar al capítulo 10 oculto
 const FECHA_CUMPLEAÑOS_2027 = new Date('2027-04-23T00:00:00');
 
-// ==========================================
-// LA BASE DE DATOS DE LA HISTORIA
-// ==========================================
-// Aquí es donde escribirás vuestras historias y fotos con calma durante el año
+// ATENCIÓN AL ESCRIBIR TUS TEXTOS AQUÍ:
+// 1. Evita poner comillas dobles (") dentro del texto. Si necesitas entrecomillar, usa las simples ('). 
+// Ejemplo BIEN: contenido: "Me dijiste 'hola' y sonreí"
 const capitulosData = {
     1: { 
         titulo: "Capítulo I: El Comienzo", 
@@ -24,64 +19,52 @@ const capitulosData = {
     7: { titulo: "Capítulo VII: El Futuro", contenido: "Todo lo que sueño a futuro apunta en esta dirección." },
     8: { titulo: "Capítulo VIII: Tú", contenido: "Quería dejar un huequito solo para decirte lo que significas para mí." },
     9: { titulo: "Capítulo IX: La Búsqueda", contenido: "Durante todo este tiempo has estado buscando nuevas respuestas por todo tipo de lugares. Pero la última pieza siempre estuvo donde empezó todo... <br><br>Revisa bien la caja principal." },
-    10: { titulo: "Tu Regalo", contenido: "Ha merecido la pena la espera. Has llegado al final de esta aventura, pero esto es solo un escalón más.<br><br>¡Feliz Cumpleaños, mi amor!<br><br>Tu verdadero regalo está un clic más abajo." }
+    10: { titulo: "Tu Regalo", contenido: "Ha merecido la pena la espera. Has llegado al final de esta aventura.<br><br>¡Feliz Cumpleaños, mi amor!<br><br>Tu verdadero regalo está un clic más abajo." }
 };
 
-// ==========================================
-// EL CEREBRO: MEMORIA DE LA APLICACIÓN
-// ==========================================
 function obtenerProgreso() {
-    // Busca en el disco duro del móvil (Safari/Chrome) qué capítulos ha leído ya
     let guardado = localStorage.getItem('el_viaje_progreso');
     if (!guardado) {
-        // La primera vez que entra, siempre se le da el capítulo 1 abierto
         let inicial = [1]; 
         localStorage.setItem('el_viaje_progreso', JSON.stringify(inicial));
         return inicial;
     }
-    return JSON.parse(guardado);
+    try {
+        return JSON.parse(guardado);
+    } catch(e) {
+        // Por si alguna vez se ensucia la memoria, empezamos limpios en el 1
+        return [1];
+    }
 }
 
-// Función maestra llamada desde los QR (unlock.html)
 function intentarDesbloquear(id, esCreador = false) {
     let progreso = obtenerProgreso();
     let numId = parseInt(id);
 
-    // 1. Si el capítulo ya estaba abierto de antes, le dejamos entrar gratis (Sigue siendo Rosa)
-    if (progreso.includes(numId)) {
-        return true; 
-    }
+    if (progreso.includes(numId)) return true; 
 
-    // 2. REGLA ESTRICTA DE ORDEN: ¿Está saltándose capítulos? (Salvo que seas tú en modo Creador probando la app)
     if (numId > 1 && !progreso.includes(numId - 1) && !esCreador) {
         alert("¡Alto ahí, mi amor! 🧐 \n\nQué impaciente eres... Cada cosa en nuestro viaje tiene su momento.\n\nPara leer este capítulo primero tienes que haber encontrado la pista anterior. ¡La historia no se puede saltar!");
-        return false; // Retornamos falso y se le echa a la web principal (candado intacto)
+        return false; 
     }
 
-    // 3. Todo está en orden: Metemos la llave nueva y lo guardamos PARA SIEMPRE en la memoria
     progreso.push(numId);
     localStorage.setItem('el_viaje_progreso', JSON.stringify(progreso));
-    
-    return true; // Éxito
+    return true; 
 }
 
-// ==========================================
-// EL PINTOR: LA PÁGINA PRINCIPAL / MAPA
-// ==========================================
 function renderizarHome() {
     const contenedor = document.getElementById('grid-capitulos');
-    if(!contenedor) return; // Protegemos para no romper el código si estamos leyendo una carta en lugar de en el Menú
+    if(!contenedor) return; 
 
     const progreso = obtenerProgreso();
 
-    // Fabricar las tarjetas 1 al 9
     for (let i = 1; i <= 9; i++) {
         let esDesbloqueado = progreso.includes(i);
         
         let a = document.createElement(esDesbloqueado ? 'a' : 'div');
         a.className = `carta ${esDesbloqueado ? 'desbloqueado' : 'bloqueado'}`;
         
-        // Si el capítulo está en la memoria del teléfono, lo hacemos clickable (el famoso cuadrito Rosa)
         if (esDesbloqueado) {
             a.href = `capitulo.html?id=${i}`;
         }
@@ -90,12 +73,9 @@ function renderizarHome() {
         contenedor.appendChild(a);
     }
 
-    // ==========================================
-    // CAPÍTULO FINAL (DOBLE FONDO Y CUMPLEAÑOS)
-    // ==========================================
     const btnFinal = document.getElementById('capitulo-final');
+    if(!btnFinal) return;
     
-    // Si ya encontró la llave del Capítulo Final el día clave, el botón general del index brillará oscurecido:
     if (progreso.includes(10)) {
         btnFinal.classList.add('activo');
         btnFinal.innerHTML = "EL FINAL DEL VIAJE";
@@ -104,4 +84,19 @@ function renderizarHome() {
     btnFinal.addEventListener('click', () => {
         const ahora = new Date();
         
-        // Primero verificamos si YA HA LLEGADO LA FECHA D
+        if (ahora >= FECHA_CUMPLEAÑOS_2027) {
+            if (progreso.includes(10)) {
+                window.location.href = `capitulo.html?id=10`; 
+            } else {
+                alert("Por fin llegó el día...\n\nPero todavía te falta la llave definitiva.\n\nBusca el compartimento oculto en el fondo de la caja que te di al principio del viaje.");
+            }
+        } else {
+            alert("Todavía no es el momento.\n\nLa última pieza lleva contigo desde el primer día de este viaje. Todo a su debido tiempo... nos vemos el 23 de abril de 2027.");
+        }
+    });
+}
+
+function generarNumerosRomanos(num) {
+    const romanos = ["", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"];
+    return romanos[num];
+}

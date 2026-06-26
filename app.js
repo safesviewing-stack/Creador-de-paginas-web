@@ -1,11 +1,11 @@
 const FECHA_CUMPLEAÑOS_2027 = new Date('2027-04-23T00:00:00');
 
 // ATENCIÓN AL ESCRIBIR TUS TEXTOS AQUÍ:
-// 1. Evita poner comillas dobles (") dentro del texto. Si necesitas entrecomillar, usa las simples ('). 
+// Evita poner comillas dobles (") dentro del texto. Usa simples (') si lo necesitas.
 const capitulosData = {
     1: { 
         titulo: "Capítulo I · El comienzo", 
-        contenido: "Siempre he pensado que las cosas que más importan rara vez aparecen de golpe.<br><br>Se construyen despacio.<br><br>Con conversaciones que empiezan sin darte cuenta, con recuerdos que nacen de los días más normales y con pequeños detalles que, vistos con el tiempo, terminan significándolo todo.<br><br>Hace algún tiempo decidí empezar a crear algo para ti.<br><br>No sabía exactamente cómo terminaría, solo sabía que quería que fuera diferente. Que no se tratara únicamente de un regalo, sino de una forma de detener el tiempo de vez en cuando y recordar todo aquello que merece la pena conservar.<br><br>Hoy solo estás viendo el principio.<br><br>Y, como en todas las buenas historias, el principio no explica todo.<br><br>Hay cosas que solo cobran sentido cuando llega el momento adecuado.<br><br>Así que, por ahora, simplemente disfruta de este instante.<br><br>Solo quiero pedirte una pequeña cosa.<br><br>Guarda bien aquello que has recibido hoy.<br><br>Puede que ahora no entiendas por qué, pero llegará un momento en el que lo necesitarás.<br><br>Hasta entonces... deja que el tiempo haga su parte.<br><br>Con cariño,<br><br>Luis" 
+        contenido: "Siempre he pensado que las cosas que más importan rara vez aparecen de golpe.<br><br>Se construyen despacio.<br><br>Con conversaciones que empiezan sin darte cuenta, con recuerdos que nacen de los días más normales y con pequeños detalles que, vistos con el tiempo, terminan significándolo todo.<br><br>Hace algún tiempo decidí empezar a crear algo para ti.<br><br>No sabía exactamente cómo terminaría, solo sabía que quería que fuera diferente. Que no se tratara únicamente de un regalo, sino de una forma de detener el tiempo de vez en cuando y recordar todo aquello que merece la pena conservar.<br><br>Hoy solo estás viendo el principio.<br><br>Y, como en todas las buenas historias, el principio no explica todo.<br><br>Hay cosas que solo cobran sentido cuando llega el momento adecuado.<br><br>Así que, por ahora, simplemente disfruta de este instante.<br><br>Solo quiero pedirte una pequeña cosa.<br><br>Guarda bien aquello que has recibido hoy.<br><br>Puede que ahora no entiendas por qué, pero llegará un momento en el que lo necesitarás.<br><br>Hasta entonces... deja que el tiempo haga su parte.<br><br>Con cariño,<br><br>Luis<br><br><div style='text-align: center; color: #D8CABB; font-size: 1.5em; margin: 50px 0;'>* * *</div><br><br>Mindig is úgy gondoltam, hogy a legfontosabb dolgok ritkán bukkannak fel csak úgy, hirtelen.<br><br>Lassan épülnek fel.<br><br>Észrevétlenül kezdődő beszélgetésekkel, a legátlagosabb napokból születő emlékekkel és olyan apró részletekkel, amelyek az idő múlásával végül mindent jelentenek.<br><br>Egy ideje elhatároztam, hogy elkezdek alkotni valamit számodra.<br><br>Nem tudtam pontosan, hogyan fog végződni, csak azt tudtam, hogy valami mást szeretnék. Hogy ez ne csak egy ajándék legyen, hanem egy módja annak, hogy időnként megállítsuk az időt, és emlékezzünk mindarra, amit érdemes megőrizni.<br><br>Ma még csak a kezdetet látod.<br><br>És mint minden jó történetben, a kezdet nem magyaráz meg mindent.<br><br>Vannak dolgok, amik csak akkor nyernek értelmet, amikor eljön a megfelelő pillanat.<br><br>Szóval, egyelőre csak élvezd ezt a pillanatot.<br><br>Csak egy apróságot szeretnék kérni tőled.<br><br>Vigyázz jól arra, amit ma kaptál.<br><br>Talán most még nem érted, miért, de eljön majd az idő, amikor szükséged lesz rá.<br><br>Addig is... hagyd, hogy az idő tegye a dolgát.<br><br>Szeretettel,<br><br>Luis" 
     },
     2: { 
         titulo: "Capítulo II: La primera vez que huimos", 
@@ -31,7 +31,6 @@ function obtenerProgreso() {
     try {
         return JSON.parse(guardado);
     } catch(e) {
-        // Por si alguna vez se ensucia la memoria, empezamos limpios en el 1
         return [1];
     }
 }

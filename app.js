@@ -71,14 +71,52 @@ function renderizarHome() {
         contenedor.appendChild(a);
     }
 
+    // EL CONTROLADOR DEL CAPÍTULO FINAL Y EL CONTADOR MÁGICO
     const btnFinal = document.getElementById('capitulo-final');
     if(!btnFinal) return;
     
     if (progreso.includes(10)) {
         btnFinal.classList.add('activo');
         btnFinal.innerHTML = "EL FINAL DEL VIAJE";
+    } else {
+        // FUNCIÓN QUE LATIRÁ CADA SEGUNDO CALCULANDO EL TIEMPO
+        function actualizarContador() {
+            const ahora = new Date().getTime();
+            const distancia = FECHA_CUMPLEAÑOS_2027.getTime() - ahora;
+
+            if (distancia > 0) {
+                const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+                const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+                const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+
+                // Ponemos ceros delante si los minutos/segundos bajan de 10 (ej: 09:05)
+                const hStr = horas.toString().padStart(2, '0');
+                const mStr = minutos.toString().padStart(2, '0');
+                const sStr = segundos.toString().padStart(2, '0');
+
+                btnFinal.innerHTML = `
+                    🔒 CAPÍTULO FINAL<br>
+                    <span style="display: block; margin-top: 10px; font-family: 'Inter', sans-serif; font-size: 0.65rem; letter-spacing: 3px; color: #D8CABB; font-weight: 300;">
+                        FALTAN ${dias} DÍAS · ${hStr}:${mStr}:${sStr}
+                    </span>
+                `;
+            } else {
+                // Si la fecha ya ha pasado pero no tiene la llave de la caja
+                btnFinal.innerHTML = `
+                    🔒 CAPÍTULO FINAL<br>
+                    <span style="display: block; margin-top: 10px; font-family: 'Inter', sans-serif; font-size: 0.65rem; letter-spacing: 3px; color: #D8CABB; font-weight: 300;">
+                        EL DÍA HA LLEGADO
+                    </span>
+                `;
+            }
+        }
+        
+        actualizarContador(); // Lo lanzamos instantáneo para que no salga vacío un segundo
+        setInterval(actualizarContador, 1000); // Hacemos que "tictaquee" cada 1000 milisegundos (1 segundo)
     }
 
+    // EL AVISO SI CLICA LA CAJA ANTES DE TIEMPO
     btnFinal.addEventListener('click', () => {
         const ahora = new Date();
         

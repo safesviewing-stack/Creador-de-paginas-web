@@ -11,8 +11,8 @@
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
     
-    <!-- SUBIMOS VERSIÓN DE CSS PARA VER QUE YA NO HAY AZUL (v=3) -->
-    <link rel="stylesheet" href="styles.css?v=3">
+    <!-- EXIGIMOS QUE BAJE LOS ESTILOS BLINDADOS Y LIMPIOS (v=10) -->
+    <link rel="stylesheet" href="styles.css?v=10">
 </head>
 <body>
     <div class="capitulo-vista" id="contenido-visor">
@@ -21,12 +21,13 @@
         <div id="texto-cap"></div>
         
         <div id="caja-regalo" style="display:none; margin-top: 50px;">
-            <!-- Quitado el # del regalo -->
             <a href="javascript:void(0);" class="capitulo-final activo" style="padding: 15px 40px; display:inline-block; text-decoration: none;">DESCARGAR REGALO FINAL</a>
         </div>
 
-        <!-- SOLUCIÓN AL TARTAMUDEO: Usar javascript en vacío, ya no le obligamos a leer anclajes de "#" en lo alto de la web -->
-        <a href="javascript:void(0);" onclick="volverForzandoRefresco()" class="btn-volver">← Volver al mapa general</a>
+        <!-- SOLUCIÓN SUPREMA: Lo hemos transformado en una simple frase clicable (<span>). 
+             Visualmente es idéntico al botón porque tiene el "class='btn-volver'".
+             Mecánicamente, es sordo y no sabe dar latigazos en pantalla. Magia. -->
+        <span onclick="volverForzandoRefresco()" class="btn-volver">← Volver al mapa general</span>
     </div>
 
     <script src="app.js?v=999"></script>
@@ -40,7 +41,7 @@
         const visorCaja = document.getElementById('contenido-visor');
 
         if (!progresosApp.includes(parseInt(idCapitulo))) {
-            visorCaja.innerHTML = `<h1>Recuerdo sin descubrir</h1><p style="margin-bottom: 50px">Todavía no has alcanzado esta parte de la historia. ¡Debes ir escaneando cada pequeño tesoro en su momento exacto!</p><a href="javascript:void(0);" onclick="volverForzandoRefresco()" class="btn-volver">← Volver al mapa general</a>`;
+            visorCaja.innerHTML = `<h1>Recuerdo sin descubrir</h1><p style="margin-bottom: 50px">Todavía no has alcanzado esta parte de la historia. ¡Debes ir escaneando cada pequeño tesoro en su momento exacto!</p><span onclick="volverForzandoRefresco()" class="btn-volver">← Volver al mapa general</span>`;
         } else {
             if (capitulosData[idCapitulo]) {
                 document.getElementById('titulo-cap').innerText = capitulosData[idCapitulo].titulo;
@@ -52,13 +53,13 @@
                     document.body.style.color = '#BBA577';
                     document.getElementById('titulo-cap').style.color = '#BBA577';
                     document.getElementById('texto-cap').style.color = '#FAF9F6';
-                    document.querySelector('.btn-volver').style.borderColor = '#BBA577';
-                    document.querySelector('.btn-volver').style.color = '#BBA577';
+                    // Evitamos bugs visuales re-escribiendo colores
                 }
             }
         }
 
         function volverForzandoRefresco() {
+            // El salto seco por defecto ha sido abolido al usar una redirección pura js 
             window.location.href = "index.html?refresco=" + Date.now();
         }
     </script>

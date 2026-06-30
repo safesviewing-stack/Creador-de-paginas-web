@@ -5,13 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuerdo - El Viaje</title>
     
-    <!-- OBLIGAR AL MÓVIL A NO GUARDAR CACHÉ -->
     <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
     <meta http-equiv="Pragma" content="no-cache">
     <meta http-equiv="Expires" content="0">
 
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=2">
+    
+    <!-- SUBIMOS VERSIÓN DE CSS PARA VER QUE YA NO HAY AZUL (v=3) -->
+    <link rel="stylesheet" href="styles.css?v=3">
 </head>
 <body>
     <div class="capitulo-vista" id="contenido-visor">
@@ -20,10 +21,12 @@
         <div id="texto-cap"></div>
         
         <div id="caja-regalo" style="display:none; margin-top: 50px;">
-            <a href="#" class="capitulo-final activo" style="padding: 15px 40px; display:inline-block; text-decoration: none;">DESCARGAR REGALO FINAL</a>
+            <!-- Quitado el # del regalo -->
+            <a href="javascript:void(0);" class="capitulo-final activo" style="padding: 15px 40px; display:inline-block; text-decoration: none;">DESCARGAR REGALO FINAL</a>
         </div>
 
-        <a href="#" onclick="volverForzandoRefresco()" class="btn-volver">← Volver al mapa general</a>
+        <!-- SOLUCIÓN AL TARTAMUDEO: Usar javascript en vacío, ya no le obligamos a leer anclajes de "#" en lo alto de la web -->
+        <a href="javascript:void(0);" onclick="volverForzandoRefresco()" class="btn-volver">← Volver al mapa general</a>
     </div>
 
     <script src="app.js?v=999"></script>
@@ -37,7 +40,7 @@
         const visorCaja = document.getElementById('contenido-visor');
 
         if (!progresosApp.includes(parseInt(idCapitulo))) {
-            visorCaja.innerHTML = `<h1>Recuerdo sin descubrir</h1><p style="margin-bottom: 50px">Todavía no has alcanzado esta parte de la historia. ¡Debes ir escaneando cada pequeño tesoro en su momento exacto!</p><a href="index.html" class="btn-volver">← Volver al mapa general</a>`;
+            visorCaja.innerHTML = `<h1>Recuerdo sin descubrir</h1><p style="margin-bottom: 50px">Todavía no has alcanzado esta parte de la historia. ¡Debes ir escaneando cada pequeño tesoro en su momento exacto!</p><a href="javascript:void(0);" onclick="volverForzandoRefresco()" class="btn-volver">← Volver al mapa general</a>`;
         } else {
             if (capitulosData[idCapitulo]) {
                 document.getElementById('titulo-cap').innerText = capitulosData[idCapitulo].titulo;
@@ -56,7 +59,6 @@
         }
 
         function volverForzandoRefresco() {
-            // Regresamos sumando la fecha exacta para obligar al menú a volver a pintar todas las cartas vivas.
             window.location.href = "index.html?refresco=" + Date.now();
         }
     </script>

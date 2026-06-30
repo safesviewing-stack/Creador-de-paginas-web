@@ -8,12 +8,18 @@
     --font-sans: 'Inter', sans-serif;
 }
 
-/* ANTI RECUADRO AZUL: Elimina los marcos nativos en todos los teléfonos y ordenadores */
+/* ANTI-BOTONES NATIVOS MÓVILES (Anula colores azules, grises, brillos, etc) */
 * {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0) !important;
     -webkit-tap-highlight-color: transparent !important;
-}
-*:focus {
     outline: none !important;
+}
+
+/* Evitamos que ella pueda seleccionar el botón como si fuera texto sin querer */
+.carta, .btn-volver, .capitulo-final {
+    user-select: none;
+    -webkit-user-select: none;
+    -webkit-touch-callout: none;
 }
 
 body {
@@ -192,7 +198,6 @@ body {
     color: #4A4A4A;
 }
 
-/* Botón de volver limpio y sedoso */
 .btn-volver {
     display: inline-block;
     margin-top: 60px;
@@ -206,13 +211,11 @@ body {
     font-weight: 300;
     transition: all 0.5s ease;
     border-radius: 30px; 
-    cursor: pointer; /* Fuerza a ser clicable */
+    cursor: pointer; 
 }
 
-.btn-volver:hover {
+.btn-volver:hover, .btn-volver:active {
     background: var(--text-charcoal);
     color: var(--bg-cream);
     border-color: var(--text-charcoal);
-    transform: translateY(-3px);
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }

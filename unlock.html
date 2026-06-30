@@ -7,52 +7,55 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
     <style>
         body { background: #2A2726; color: #BBA577; height: 100vh; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; text-align: center; }
-        .fade { animation: aparecer 3s ease-in-out; font-size: 2rem; }
+        .fade { animation: aparecer 3.2s ease-in-out; font-size: 2.5rem; letter-spacing: 3px;}
         @keyframes aparecer { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
     </style>
 </head>
 <body>
-    <h1 class="fade" id="texto-carga">Cargando...</h1>
+    <!-- LA CAJA DE TEXTO VACÍA. SE LLENARÁ SOLA CON MAGIA. -->
+    <h1 class="fade" id="texto-carga"></h1>
+
+    <!-- LLAMAMOS A TU CEREBRO PARA DESBLOQUEAR Y VER EL CUMPLEAÑOS (EL v=999 DESTRUYE TU CACHÉ) -->
+    <script src="app.js?v=999"></script>
 
     <script>
         const urlParams = new URLSearchParams(window.location.search);
         const capitulo = urlParams.get('cap');
         const esCreador = urlParams.get('creador') === '1';
 
-        // 1. ELEGIMOS LA FRASE DE ANIMACIÓN DEPEDIENDO DEL CÓDIGO
+        // 1. ELEGIMOS LA ANIMACIÓN EXACTA DEPENDIENDO DE QUÉ QR ES
         const textoVisor = document.getElementById('texto-carga');
+        
         if (capitulo === '1') {
             textoVisor.innerText = "Iniciando el viaje...";
         } else if (capitulo) {
             textoVisor.innerText = "Abriendo nuevo recuerdo...";
         }
 
+        // 2. ENVIAMOS AL CEREBRO LA LLAVE PARA VALIDAR SI PUEDE ENTRAR
         if (capitulo) {
+            let pasoAprobado = intentarDesbloquear(capitulo, esCreador);
             let idNum = parseInt(capitulo);
-            let guardado = localStorage.getItem('el_viaje_progreso');
-            let progreso = guardado ? JSON.parse(guardado) : [1];
 
-            if (!progreso.includes(idNum)) {
-                if (idNum > 1 && !progreso.includes(idNum - 1) && !esCreador) {
-                    alert("¡Alto ahí! 🧐\n\nEl orden de nuestra historia importa. Necesitas encontrar el Código Anterior antes de poder ver este mensaje.");
-                    window.location.href = "index.html"; 
-                } else {
-                    progreso.push(idNum);
-                    localStorage.setItem('el_viaje_progreso', JSON.stringify(progreso));
-                    entrarAlRecuerdo(idNum);
-                }
+            if (pasoAprobado) {
+                // TIEMPO DE ANIMACIÓN OSCURA: 2.8 SEGUNDOS Y LUEGO VIAJE MAGICO
+                setTimeout(() => {
+                    if (idNum === 1) {
+                        // SI ES EL QR 1 -> DIRECTOS A LA PÁGINA PRINCIPAL
+                        window.location.href = "index.html"; 
+                    } else {
+                        // RESTO DE QRs -> DIRECTOS A LEER LA HISTORIA
+                        window.location.href = "capitulo.html?id=" + idNum; 
+                    }
+                }, 2800);
             } else {
-                entrarAlRecuerdo(idNum);
+                // SI ESTÁ HACIENDO TRAMPAS SE LE EXPULSA
+                setTimeout(() => {
+                    window.location.href = "index.html";
+                }, 100);
             }
         } else {
             window.location.href = "index.html";
-        }
-
-        function entrarAlRecuerdo(numeroDestino) {
-            setTimeout(() => {
-                // Al QR1 le metemos a leer directo el Capítulo I (donde guardaste las normas)
-                window.location.href = "capitulo.html?id=" + numeroDestino; 
-            }, 2500);
         }
     </script>
 </body>

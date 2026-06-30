@@ -4,26 +4,29 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Recuerdo - El Viaje</title>
+    
+    <!-- OBLIGAR AL MÓVIL A NO GUARDAR CACHÉ -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
     <div class="capitulo-vista" id="contenido-visor">
         <h1 id="titulo-cap">Cargando recuerdo...</h1>
         
-        <div id="texto-cap">
-            <!-- La magia pintará aquí las letras y las fotos desde app.js -->
-        </div>
+        <div id="texto-cap"></div>
         
         <div id="caja-regalo" style="display:none; margin-top: 50px;">
             <a href="#" class="capitulo-final activo" style="padding: 15px 40px; display:inline-block; text-decoration: none;">DESCARGAR REGALO FINAL</a>
         </div>
 
-        <a href="index.html" class="btn-volver">← Volver al mapa general</a>
+        <a href="#" onclick="volverForzandoRefresco()" class="btn-volver">← Volver al mapa general</a>
     </div>
 
-    <!-- EL TRUCO ?v=500 MATA LA CACHÉ PARA MOSTRAR TU CAPÍTULO 4 PARA SIEMPRE -->
-    <script src="app.js?v=500"></script>
+    <script src="app.js?v=999"></script>
     <script>
         const params = new URLSearchParams(window.location.search);
         const idCapitulo = params.get('id');
@@ -50,6 +53,11 @@
                     document.querySelector('.btn-volver').style.color = '#BBA577';
                 }
             }
+        }
+
+        function volverForzandoRefresco() {
+            // Regresamos sumando la fecha exacta para obligar al menú a volver a pintar todas las cartas vivas.
+            window.location.href = "index.html?refresco=" + Date.now();
         }
     </script>
 </body>

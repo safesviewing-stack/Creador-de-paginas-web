@@ -6,49 +6,51 @@
     <title>Desbloqueando...</title>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
     <style>
-        /* Pantalla oscura, con animación elegante de transición */
         body { background: #2A2726; color: #BBA577; height: 100vh; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; text-align: center; }
         .fade { animation: aparecer 3s ease-in-out; font-size: 2rem; }
         @keyframes aparecer { 0% { opacity: 0; } 50% { opacity: 1; } 100% { opacity: 0; } }
     </style>
 </head>
 <body>
-    <h1 class="fade">Abriendo nuevo recuerdo...</h1>
+    <h1 class="fade" id="texto-carga">Cargando...</h1>
 
     <script>
-        // EL CEREBRO DIRECTO Y A PRUEBA DE FALLOS EN EL PROPIO HTML
         const urlParams = new URLSearchParams(window.location.search);
         const capitulo = urlParams.get('cap');
         const esCreador = urlParams.get('creador') === '1';
+
+        // 1. ELEGIMOS LA FRASE DE ANIMACIÓN DEPEDIENDO DEL CÓDIGO
+        const textoVisor = document.getElementById('texto-carga');
+        if (capitulo === '1') {
+            textoVisor.innerText = "Iniciando el viaje...";
+        } else if (capitulo) {
+            textoVisor.innerText = "Abriendo nuevo recuerdo...";
+        }
 
         if (capitulo) {
             let idNum = parseInt(capitulo);
             let guardado = localStorage.getItem('el_viaje_progreso');
             let progreso = guardado ? JSON.parse(guardado) : [1];
 
-            // 1. Validar el candado si es que aún no lo tiene guardado
             if (!progreso.includes(idNum)) {
-                // Si salta capítulos, bloqueamos
                 if (idNum > 1 && !progreso.includes(idNum - 1) && !esCreador) {
                     alert("¡Alto ahí! 🧐\n\nEl orden de nuestra historia importa. Necesitas encontrar el Código Anterior antes de poder ver este mensaje.");
-                    window.location.href = "index.html"; // Al mapa de vuelta
+                    window.location.href = "index.html"; 
                 } else {
-                    // Está en orden: lo guardamos para siempre
                     progreso.push(idNum);
                     localStorage.setItem('el_viaje_progreso', JSON.stringify(progreso));
                     entrarAlRecuerdo(idNum);
                 }
             } else {
-                // Ya lo tenía de antes, le dejamos entrar sin cambiar nada
                 entrarAlRecuerdo(idNum);
             }
         } else {
             window.location.href = "index.html";
         }
 
-        // TELETRANSPORTE MAGICO TRAS 2 SEGUNDOS
         function entrarAlRecuerdo(numeroDestino) {
             setTimeout(() => {
+                // Al QR1 le metemos a leer directo el Capítulo I (donde guardaste las normas)
                 window.location.href = "capitulo.html?id=" + numeroDestino; 
             }, 2500);
         }

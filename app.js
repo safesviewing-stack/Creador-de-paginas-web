@@ -77,32 +77,36 @@ function renderizarHome() {
 
     const btnFinal = document.getElementById('capitulo-final');
     if(!btnFinal) return;
-    
-    if (progreso.includes(10)) {
-        btnFinal.classList.add('activo');
-        btnFinal.innerHTML = "EL FINAL DEL VIAJE";
-    } else {
-        function actualizarContador() {
-            const ahora = new Date().getTime();
-            const distancia = FECHA_CUMPLEAÑOS_2027.getTime() - ahora;
 
-            if (distancia > 0) {
-                const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-                const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-                const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
+    function actualizarContador() {
+        const ahora = new Date().getTime();
+        const distancia = FECHA_CUMPLEAÑOS_2027.getTime() - ahora;
 
-                const hStr = horas.toString().padStart(2, '0');
-                const mStr = minutos.toString().padStart(2, '0');
-                const sStr = segundos.toString().padStart(2, '0');
+        if (distancia > 0) {
+            // SI FALTA TIEMPO PARA 2027: SIEMPRE VERÁ CANDADO + RELOJ (Obligatoriamente)
+            btnFinal.classList.remove('activo');
+            const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
+            const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
+            const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
 
-                btnFinal.innerHTML = `
-                    🔒 CAPÍTULO FINAL<br>
-                    <span style="display: block; margin-top: 10px; font-family: 'Inter', sans-serif; font-size: 0.65rem; letter-spacing: 3px; color: #D8CABB; font-weight: 300;">
-                        FALTAN ${dias} DÍAS · ${hStr}:${mStr}:${sStr}
-                    </span>
-                `;
+            const hStr = horas.toString().padStart(2, '0');
+            const mStr = minutos.toString().padStart(2, '0');
+            const sStr = segundos.toString().padStart(2, '0');
+
+            btnFinal.innerHTML = `
+                🔒 CAPÍTULO FINAL<br>
+                <span style="display: block; margin-top: 10px; font-family: 'Inter', sans-serif; font-size: 0.65rem; letter-spacing: 3px; color: #D8CABB; font-weight: 300;">
+                    FALTAN ${dias} DÍAS · ${hStr}:${mStr}:${sStr}
+                </span>
+            `;
+        } else {
+            // SI HA LLEGADO LA FECHA FINAL 
+            if (progreso.includes(10)) {
+                btnFinal.classList.add('activo');
+                btnFinal.innerHTML = "EL FINAL DEL VIAJE";
             } else {
+                btnFinal.classList.remove('activo');
                 btnFinal.innerHTML = `
                     🔒 CAPÍTULO FINAL<br>
                     <span style="display: block; margin-top: 10px; font-family: 'Inter', sans-serif; font-size: 0.65rem; letter-spacing: 3px; color: #D8CABB; font-weight: 300;">
@@ -111,22 +115,24 @@ function renderizarHome() {
                 `;
             }
         }
-        
-        actualizarContador(); 
-        setInterval(actualizarContador, 1000); 
     }
+    
+    actualizarContador(); 
+    setInterval(actualizarContador, 1000); 
 
     btnFinal.addEventListener('click', () => {
-        const ahora = new Date();
+        const ahora = new Date().getTime();
+        const distancia = FECHA_CUMPLEAÑOS_2027.getTime() - ahora;
         
-        if (ahora >= FECHA_CUMPLEAÑOS_2027) {
+        // Sólo hará algo si la fecha YA ha pasado. 
+        if (distancia <= 0) { 
             if (progreso.includes(10)) {
                 window.location.href = `capitulo.html?id=10`; 
             } else {
                 alert("Por fin llegó el día...\n\nPero todavía te falta la llave definitiva.\n\nBusca el compartimento oculto en el fondo de la caja que te di al principio del viaje.");
             }
         } else {
-            alert("Todavía no es el momento.\n\nLa última pieza lleva contigo desde el primer día de este viaje. Todo a su debido tiempo... nos vemos el 23 de abril de 2027.");
+            // ELIMINADA LA ALERTA. SI PUSLAN CON EL DEDO HOY, NO HACE ABSOLUTAMENTE NADA (SE QUEDA MUDO Y CERRADO).
         }
     });
 }

@@ -5,33 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>El Viaje | Para ti</title>
     
-    <!-- Privacidad -->
+    <!-- OBLIGAR AL NAVEGADOR DEL MÓVIL/PC A NO GUARDAR LA PÁGINA EN MEMORIA NUNCA -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    
+    <!-- Privacidad: evitar que Google lo indexe por casualidad -->
     <meta name="robots" content="noindex, nofollow">
     
-    <!-- Tipografías elegantes -->
+    <!-- Tipografías elegantes de Google -->
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;600&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Estilos de diseño con actualizador de versión -->
+    <link rel="stylesheet" href="styles.css?v=2">
 </head>
 <body>
     <main class="home-container">
-        <!-- TITULAR SUPERIOR -->
+        
+        <!-- TÍTULO PRINCIPAL (Con animación al cargar) -->
         <header class="home-header">
             <h1>EL VIAJE</h1>
             <p>PARA TI, PIEZA POR PIEZA</p>
         </header>
         
-        <!-- CAJA DE CARTAS ROMANAS -->
+        <!-- ESPACIO MAGNÉTICO DONDE EL 'app.js' PINTA LAS TARJETAS (I, II, III...) -->
         <div class="grid-capitulos" id="grid-capitulos"></div>
 
-        <!-- CAPÍTULO FINAL AL FONDO -->
+        <!-- BOTÓN MUDO DEL CUMPLEAÑOS QUE MARCA EL TIEMPO CONSTANTEMENTE -->
         <div class="capitulo-final" id="capitulo-final">
             🔒 CAPÍTULO FINAL
         </div>
+        
     </main>
 
-    <!-- LA MAGIA DEL ANTI-CACHÉ (v=200) -->
-    <script src="app.js?v=200"></script>
+    <!-- CARGAMOS EL CEREBRO OBLIGANDO A ACTUALIZARLO (?v=999) -->
+    <script src="app.js?v=999"></script>
     
+    <!-- DAMOS LA ORDEN AL CEREBRO DE ENCUADRAR TODAS LAS FICHAS EN LA PANTALLA -->
     <script>
         renderizarHome();
     </script>

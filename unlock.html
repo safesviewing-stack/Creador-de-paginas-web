@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Desbloqueando...</title>
+
+    <!-- OBLIGAR AL MÓVIL A NO GUARDAR CACHÉ -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300&display=swap" rel="stylesheet">
     <style>
         body { background: #2A2726; color: #BBA577; height: 100vh; display: flex; align-items: center; justify-content: center; font-family: 'Cormorant Garamond', serif; text-align: center; }
@@ -12,10 +18,8 @@
     </style>
 </head>
 <body>
-    <!-- LA CAJA DE TEXTO VACÍA. SE LLENARÁ SOLA CON MAGIA. -->
     <h1 class="fade" id="texto-carga"></h1>
 
-    <!-- LLAMAMOS A TU CEREBRO PARA DESBLOQUEAR Y VER EL CUMPLEAÑOS (EL v=999 DESTRUYE TU CACHÉ) -->
     <script src="app.js?v=999"></script>
 
     <script>
@@ -23,7 +27,6 @@
         const capitulo = urlParams.get('cap');
         const esCreador = urlParams.get('creador') === '1';
 
-        // 1. ELEGIMOS LA ANIMACIÓN EXACTA DEPENDIENDO DE QUÉ QR ES
         const textoVisor = document.getElementById('texto-carga');
         
         if (capitulo === '1') {
@@ -32,30 +35,27 @@
             textoVisor.innerText = "Abriendo nuevo recuerdo...";
         }
 
-        // 2. ENVIAMOS AL CEREBRO LA LLAVE PARA VALIDAR SI PUEDE ENTRAR
         if (capitulo) {
             let pasoAprobado = intentarDesbloquear(capitulo, esCreador);
             let idNum = parseInt(capitulo);
+            let horaExacta = Date.now(); // Número aleatorio del milisegundo exacto
 
             if (pasoAprobado) {
-                // TIEMPO DE ANIMACIÓN OSCURA: 2.8 SEGUNDOS Y LUEGO VIAJE MAGICO
                 setTimeout(() => {
                     if (idNum === 1) {
-                        // SI ES EL QR 1 -> DIRECTOS A LA PÁGINA PRINCIPAL
-                        window.location.href = "index.html"; 
+                        // Lo enviamos sumándole basura de milisegundos para matar el caché SIEMPRE
+                        window.location.href = "index.html?rf=" + horaExacta; 
                     } else {
-                        // RESTO DE QRs -> DIRECTOS A LEER LA HISTORIA
-                        window.location.href = "capitulo.html?id=" + idNum; 
+                        window.location.href = "capitulo.html?id=" + idNum + "&rf=" + horaExacta; 
                     }
                 }, 2800);
             } else {
-                // SI ESTÁ HACIENDO TRAMPAS SE LE EXPULSA
                 setTimeout(() => {
-                    window.location.href = "index.html";
+                    window.location.href = "index.html?rf=" + horaExacta;
                 }, 100);
             }
         } else {
-            window.location.href = "index.html";
+            window.location.href = "index.html?rf=" + Date.now();
         }
     </script>
 </body>

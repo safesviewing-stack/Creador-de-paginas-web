@@ -12,7 +12,7 @@
         <h1 id="titulo-cap">Cargando recuerdo...</h1>
         
         <div id="texto-cap">
-            <!-- Aquí el cerebro volcará el español y el húngaro seguidos -->
+            <!-- La magia pintará aquí las letras y las fotos desde app.js -->
         </div>
         
         <div id="caja-regalo" style="display:none; margin-top: 50px;">
@@ -22,8 +22,8 @@
         <a href="index.html" class="btn-volver">← Volver al mapa general</a>
     </div>
 
-    <!-- EL TRUCO ?v=100 ESTÁ AQUÍ ABAJO PARA QUE OBLIGUE AL TELÉFONO A MOSTRAR EL HÚNGARO -->
-    <script src="app.js?v=100"></script>
+    <!-- EL TRUCO ?v=500 MATA LA CACHÉ PARA MOSTRAR TU CAPÍTULO 4 PARA SIEMPRE -->
+    <script src="app.js?v=500"></script>
     <script>
         const params = new URLSearchParams(window.location.search);
         const idCapitulo = params.get('id');
